@@ -1,0 +1,25 @@
+# Pinout ESP32S3 XIAO
+#
+# GPIO1  - A0 - D0       |  | 5V
+# GPIO2  - A1 - D1       |  | GND
+# GPIO3  - A2 - D2       |  | 3V3
+# GPIO4  - A3 - D3       |  | MOSI - D10 - A10 - GPIO9
+# GPIO5  - A4 - D4 - SDA |  | MISO - D9  - A9  - GPIO8
+# GPIO6  - A5 - D5 - SCL |  | SCK  - D8  - A8  - GPIO7
+# GPIO43 - A6 - D6 - TX  |  | RX   - D7  - A7  - GPIO44
+
+import machine
+
+i2c = machine.I2C(scl=machine.Pin(6), sda=machine.Pin(5), freq=400000)
+
+spi = machine.SPI(baudrate=1000000, polarity=1, phase=1, bits=8, firstbit=machine.SPI.MSB,
+                  sck=machine.Pin(7), mosi=machine.Pin(9), miso=machine.Pin(8))
+spi_cs = machine.Pin(44, machine.Pin.OUT)
+
+uart = machine.UART(1, baudrate=912600, tx=machine.Pin(43), rx=machine.Pin(44))
+
+adc = machine.ADC(machine.Pin(1)) # A0
+adc.atten(machine.ADC.ATTN_11DB)  # 0 -> 2.5V
+volts = adc.read_u16()/65535*2.5
+
+pwm = machine.PWM(machine.Pin(7), freq=100, duty_u16=32768) # 100Hz, 50% duty

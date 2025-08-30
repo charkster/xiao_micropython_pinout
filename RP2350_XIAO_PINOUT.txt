@@ -1,0 +1,28 @@
+# Pinout RP2040 XIAO
+#
+# GP26  - A0 - D0   |  | 5V
+# GP27  - A1 - D1   |  | GND
+# GP28  - A2 - D2   |  | 3V3
+# GP5        - D3   |  | MOSI0 - D10 - GP3
+# GP6   - D4 - SDA1 |  | MISO0 - D9  - GP4
+# GP7   - D5 - SCL1 |  | SCK0  - D8  - GP2
+# GP0   - D6 - TX0  |  | RX0   - D7  - GP1
+
+import machine
+
+i2c = machine.I2C(1, sda=machine.Pin(6), scl=machine.Pin(7), freq=400000)
+
+spi = machine.SPI(0, baudrate=1000000, polarity=1, phase=1, bits=8, firstbit=machine.SPI.MSB,
+                  sck=machine.Pin(2), mosi=machine.Pin(3), miso=machine.Pin(4))
+spi_cs = machine.Pin(1, machine.Pin.OUT)
+
+uart = machine.UART(0, baudrate=912600, tx=machine.Pin(0), rx=machine.Pin(1))
+
+volts = machine.ADC(0).read_u16() / 65535 * 3.3 # A0
+
+pwm = machine.PWM(machine.Pin(0), freq=100, duty_u16=32768) # 100Hz, 50% duty
+
+machine.mem32[0X40100004]=0x5afea050
+machine.mem32[0X4010000C]=0x5afe00d0
+machine.freq(320_000_000)
+
