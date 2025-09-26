@@ -13,4 +13,4 @@
 # PWM - AUD_OUT1C  -      - D9   |  | D16 - A2  - RX4 - SCL1 -            -
 # PWM - AUD_MQSR   - CS   - D10  |  | D15 - A1  - RX3 -      - SPDIF_IN   - PWM
 # PWM - CTX1       - MOSI - D11  |  | D14 - A0  - TX3 -      - SPDIF_OUT  - PWM
-# PWM - AUD_MQSL   - MISO - D12  |  | D13 - LED - SCK - CRX1 -            - PWM
+# PWM - AUD_MQSL   - MISO - D12  |  | D13 - SCK - LED - CRX1 -            - PWM
