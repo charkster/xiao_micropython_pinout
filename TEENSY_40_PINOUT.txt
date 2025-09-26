@@ -1,0 +1,16 @@
+# Pinout Teensy 4.0
+#
+#                           GND  |  | 5V
+# PWM - CRX2       - RX1  - D0   |  | GND
+# PWM - CTX2       - TX1  - D1   |  | 3V3
+# PWM - AUD_OUT2   -      - D2   |  | D23 - A9  -     - CRX1 - AUD_MCLK1  - PWM
+# PWM - AUD_LRCLK2 -      - D3   |  | D22 - A8  -     - CTX1 -            - PWM
+# PWM - AUD_BCLK2  -      - D4   |  | D21 - A7  - RX5 -      - AUD_BCLK1  -
+# PWM - AUD_IN2    -      - D5   |  | D20 - A6  - TX5 -      - AUD_LRCLK1 -
+# PWM - AUD_OUT1D  -      - D6   |  | D19 - A5  -     - SCL0 -            - PWM
+# PWM - AUD_OUT1A  - RX2  - D7   |  | D18 - A4  -     - SDA0 -            - PWM
+# PWM - AUD_IN1    - TX2  - D8   |  | D17 - A3  - TX4 - SDA1 -            -
+# PWM - AUD_OUT1C  -      - D9   |  | D16 - A2  - RX4 - SCL1 -            -
+# PWM - AUD_MQSR   - CS   - D10  |  | D15 - A1  - RX3 -      - SPDIF_IN   - PWM
+# PWM - CTX1       - MOSI - D11  |  | D14 - A0  - TX3 -      - SPDIF_OUT  - PWM
+# PWM - AUD_MQSL   - MISO - D12  |  | D13 - LED - SCK - CRX1 -            - PWM
