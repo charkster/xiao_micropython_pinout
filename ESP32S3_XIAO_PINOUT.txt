@@ -8,9 +8,11 @@
 # GPIO6  - A5 - D5 - SCL |  | SCK  - D8  - A8  - GPIO7
 # GPIO43 - A6 - D6 - TX  |  | RX   - D7  - A7  - GPIO44
 
+# LED_Y - GP21
+
 import machine
 
-d0 = machine.Pin(1, machine.Pin.OUT)
+d0 = machine.Pin(1, machine.Pin.OUT, value=1)
 
 i2c = machine.I2C(scl=machine.Pin(6), sda=machine.Pin(5), freq=400000)
 
@@ -25,3 +27,6 @@ adc.atten(machine.ADC.ATTN_11DB)  # 0 -> 2.5V
 volts = adc.read_u16()/65535*2.5
 
 pwm = machine.PWM(machine.Pin(7), freq=100, duty_u16=32768) # 100Hz, 50% duty
+
+led_y = machine.Pin(21, machine.Pin.OUT, value=1) # low is on
+led_y.value(0)
