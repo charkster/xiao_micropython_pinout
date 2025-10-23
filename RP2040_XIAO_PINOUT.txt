@@ -8,6 +8,10 @@
 # GP7   - D5 - SCL1 |  | SCK0  - D8  - GP2
 # GP0   - D6 - TX0  |  | RX0   - D7  - GP1
 
+# LED RED   - GP17
+# LED GREEN - GP16
+# LED BLUE  - GP25
+
 import machine
 
 d0 = machine.Pin(26, machine.Pin.OUT)
@@ -23,3 +27,8 @@ uart = machine.UART(0, baudrate=912600, tx=machine.Pin(0), rx=machine.Pin(1))
 volts = machine.ADC(26).read_u16() / 65535 * 3.3 # A0
 
 pwm = machine.PWM(machine.Pin(0), freq=100, duty_u16=32768) # 100Hz, 50% duty
+
+led_r = machine.Pin(17, machine.Pin.OUT, value=1) # low is on
+led_g = machine.Pin(16, machine.Pin.OUT, value=1) # low is on
+led_b = machine.Pin(25, machine.Pin.OUT, value=1) # low is on
+led_g.value(0)
