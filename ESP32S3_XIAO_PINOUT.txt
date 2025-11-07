@@ -14,7 +14,10 @@ import machine
 
 d0 = machine.Pin(1, machine.Pin.OUT, value=1)
 
-i2c = machine.I2C(scl=machine.Pin(6), sda=machine.Pin(5), freq=400000)
+i2c_master = machine.I2C(scl=machine.Pin(6), sda=machine.Pin(5), freq=400000)
+
+mem       = bytearray(8) # optional
+i2c_slave = machine.I2CTarget(addr=0x71, mem=mem, scl=machine.Pin(6), sda=machine.Pin(5))
 
 spi = machine.SPI(baudrate=1000000, polarity=1, phase=1, bits=8, firstbit=machine.SPI.MSB,
                   sck=machine.Pin(7), mosi=machine.Pin(9), miso=machine.Pin(8))
