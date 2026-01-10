@@ -24,7 +24,7 @@ spi_cs = machine.Pin(5, machine.Pin.OUT)
 uart = machine.UART(1, baudrate=912600, tx=machine.Pin(21), rx=machine.Pin(20))
 
 adc = machine.ADC(machine.Pin(2)) # A0
-adc.atten(machine.ADC.ATTN_11DB)  # 0 -> 2.5V
-volts = adc.read_u16()/65535*2.5
+adc.atten(machine.ADC.ATTN_11DB)  # 0 -> 3.0V
+volts = adc.read_u16()/65535*3.0
 
 pwm = machine.PWM(machine.Pin(2), freq=100, duty_u16=32768) # 100Hz, 50% duty
