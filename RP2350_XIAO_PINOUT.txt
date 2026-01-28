@@ -1,4 +1,4 @@
-# Pinout RP2040 XIAO
+# Pinout RP2350 XIAO
 #
 # GP26  - A0 - D0   |  | 5V
 # GP27  - A1 - D1   |  | GND
