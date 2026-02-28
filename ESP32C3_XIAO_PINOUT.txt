@@ -28,3 +28,7 @@ adc.atten(machine.ADC.ATTN_11DB)  # 0 -> 3.0V
 volts = adc.read_u16()/65535*3.0
 
 pwm = machine.PWM(machine.Pin(2), freq=100, duty_u16=32768) # 100Hz, 50% duty
+
+# Any GPIO pin can be used for I2S, use mode=machine.I2S.RX for receiving I2S data
+i2s0 = machine.I2S(0, sck=machine.Pin(2), ws=machine.Pin(3), sd=machine.Pin(4), 
+                   mode=machine.I2S.TX, bits=16, format=machine.I2S.MONO, rate=16000, ibuf=20000)
