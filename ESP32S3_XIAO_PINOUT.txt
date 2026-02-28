@@ -33,3 +33,9 @@ pwm = machine.PWM(machine.Pin(7), freq=100, duty_u16=32768) # 100Hz, 50% duty
 
 led_y = machine.Pin(21, machine.Pin.OUT, value=1) # low is on
 led_y.value(0)
+
+# Any GPIO pin can be used for I2S, use mode=machine.I2S.RX for receiving I2S data
+i2s0 = machine.I2S(0, sck=machine.Pin(2), ws=machine.Pin(3), sd=machine.Pin(4), 
+                   mode=machine.I2S.TX, bits=16, format=machine.I2S.MONO, rate=16000, ibuf=20000)
+i2s1 = machine.I2S(1, sck=machine.Pin(2), ws=machine.Pin(3), sd=machine.Pin(4), 
+                   mode=machine.I2S.RX, bits=16, format=machine.I2S.MONO, rate=16000, ibuf=20000)
