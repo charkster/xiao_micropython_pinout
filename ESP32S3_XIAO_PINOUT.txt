@@ -12,23 +12,28 @@
 
 import machine
 
+# any GPIO pin
 d0 = machine.Pin(1, machine.Pin.OUT, value=1)
 
+# any GPIO pin but 2 channels
 i2c_master = machine.I2C(scl=machine.Pin(6), sda=machine.Pin(5), freq=400000)
 
 mem       = bytearray(8) # optional
 i2c_slave = machine.I2CTarget(addr=0x71, mem=mem, scl=machine.Pin(6), sda=machine.Pin(5))
 
+# soft-spi on any GPIO pin limited to 1MHz, hardware spi pins 7,8,9 only 2 channels
 spi = machine.SPI(baudrate=1000000, polarity=1, phase=1, bits=8, firstbit=machine.SPI.MSB,
                   sck=machine.Pin(7), mosi=machine.Pin(9), miso=machine.Pin(8))
 spi_cs = machine.Pin(44, machine.Pin.OUT)
 
+# uarts 0,2 can be any GPIO pin, only 3 channels
 uart = machine.UART(1, baudrate=912600, tx=machine.Pin(43), rx=machine.Pin(44))
 
 adc = machine.ADC(machine.Pin(1)) # A0
 adc.atten(machine.ADC.ATTN_11DB)  # 0 -> 2.5V
 volts = adc.read_u16()/65535*2.5
 
+# any GPIO pin, 8 channels
 pwm = machine.PWM(machine.Pin(7), freq=100, duty_u16=32768) # 100Hz, 50% duty
 
 led_y = machine.Pin(21, machine.Pin.OUT, value=1) # low is on
